@@ -7,8 +7,10 @@ const MainSite = ({ addToCart }) => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
+    const api = import.meta.env.VITE_API_URL || "http://192.168.68.101:5000";
+
     useEffect(() => {
-        fetch("http://192.168.68.101:5000/products")
+        fetch(`${api}/products`)
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
@@ -29,9 +31,9 @@ const MainSite = ({ addToCart }) => {
                             className="bg-white shadow-lg rounded-2xl p-4 flex flex-col items-center cursor-pointer hover:scale-105 transition-transform"
                             onClick={() => setSelectedProduct(product)}
                         >
-                            <img src={product.image} alt={product.name} className="w-24 h-24 object-cover rounded-md border" />
+                            <img src={product.image || "default.png"} alt={product.name} className="w-24 h-24 object-cover rounded-md border" />
                             <h3 className="mt-2 text-lg font-semibold text-gray-700 text-center">{product.name}</h3>
-                            <p className="text-sm text-gray-500">{product.price}</p>
+                            <p className="text-sm text-gray-500">{product.price || 0} $</p>
                             <button
                                 className="mt-2 bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 w-full"
                                 onClick={(e) => {
@@ -43,6 +45,8 @@ const MainSite = ({ addToCart }) => {
                             </button>
                         </li>
                     ))
+                ) : products.length === 0 ? (
+                    <p className="text-center col-span-4 text-gray-500">Загрузка товаров...</p>
                 ) : (
                     <p className="text-center col-span-4 text-gray-500">Товар не найден</p>
                 )}
@@ -57,9 +61,9 @@ const MainSite = ({ addToCart }) => {
                         >
                             ✖
                         </button>
-                        <img src={selectedProduct.image} alt={selectedProduct.name} className="w-32 h-32 object-cover rounded-md border mx-auto" />
+                        <img src={selectedProduct.image || "default.png"} alt={selectedProduct.name} className="w-32 h-32 object-cover rounded-md border mx-auto" />
                         <h2 className="text-2xl font-bold text-center mt-4">{selectedProduct.name}</h2>
-                        <p className="text-gray-700 text-center mt-2 text-lg font-semibold">Цена: {selectedProduct.price} $</p>
+                        <p className="text-gray-700 text-center mt-2 text-lg font-semibold">Цена: {selectedProduct.price || 0} $</p>
                         <p className="text-gray-500 mt-4 text-center">{selectedProduct.description || "Описание отсутствует"}</p>
                         <button
                             className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600"

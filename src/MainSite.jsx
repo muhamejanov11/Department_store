@@ -8,7 +8,7 @@ const MainSite = ({ addToCart }) => {
     const [selectedProduct, setSelectedProduct] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:5000/products")
+        fetch("http://192.168.68.101:5000/products")
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);

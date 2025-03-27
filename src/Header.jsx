@@ -16,7 +16,7 @@ const Header = ({ products, setFilteredProducts }) => {
     };
 
     return (
-        <header className="bg-blue-600 py-3 px-4 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
+        <header className="bg-[blue] py-3 px-4 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
             <img className="w-32 md:w-48 h-auto" src={image1} alt="Лого" />
             <div className="flex items-center border-2 border-white rounded-lg px-2 py-1 w-full max-w-md">
                 <span>🔎</span>

@@ -31,7 +31,7 @@ const MainSite = ({ addToCart }) => {
                         >
                             <img src={product.image} alt={product.name} className="w-24 h-24 object-cover rounded-md border" />
                             <h3 className="mt-2 text-lg font-semibold text-gray-700 text-center">{product.name}</h3>
-                            <p className="text-sm text-gray-500">{product.price} $</p>
+                            <p className="text-sm text-gray-500">{product.price}</p>
                             <button
                                 className="mt-2 bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 w-full"
                                 onClick={(e) => {
